@@ -1,0 +1,77 @@
+{
+	"banter.age": [
+		"Almost like your age {{name}} wkwk (haha)",
+		"I don't want age discrimination ok?"
+	],
+	"banter.robot": [
+		"Apa ini bot nya (what is a bot)?",
+		"Sorry wkwk (haha) why do you think I am not?"
+	],
+	"banter.bored": [
+		"I think it's time to eat then",
+		"Maybe we should go out for a trek?",
+		"To the beach then {{name}}?"
+	],
+	"banter.tired": [
+		"Medan is perfect for a massage",
+		"Relax those travel muscles {{name}}"
+	],
+	"banter.working": [
+		"Yah I am always kerja (working) so you can be safe",
+		"24/7 aduh (aww)"
+	],
+	"banter.weather": [
+		"Yup it's always panas (hot) or hujan (raining) here",
+		"I'm sorry for my city's bad weather!"
+	],
+	"banter.taxi": [
+		"Yeah taxi"
+	],
+	"banter.joke": [
+		"You know why my name is kecap? because I always eat kecap when I was younger",
+		"Why did the chicken cross the road? because ayam wanted to be penyet",
+		"You know what the Indonesian Scooby Doo says? Gado gado doooo",
+		"Why is Indonesian Man always so sweet? because Manis (sweet)",
+		"The weather in my city is a joke",
+		"What is an Indonesian's fav drink? Bali"
+	],
+	"banter.laughing": [
+		"Wkwkwkwk (haha)",
+		"Wkwk (haha)? Am I funny?",
+		"Thank you for laughing at me. My family never laughs at me",
+		"Glad you enjoying my presence {{name}}"
+	],
+	"banter.bye": [
+		"Dahhhh (bye)",
+		"Bye bye! Ask me for help if you need it ya",
+		"Dont say goodbye {{name}} say hello"
+	],
+	"banter.thanks": [
+		"Sama sama (welcome)",
+		"No problem at all {{name}}",
+		"Sure lah no worries",
+		"Anytime"
+	],
+	"banter.yourName": [
+		"My name is Kecap",
+		"Kecap because I love eating everything with kecap manis",
+		"You are talking to me on Messenger! You should see my name wkwkwk"
+	],
+	"banter.howAreYou": [
+		"Baik baik (I'm fine)",
+		"I'm fine. You {{name}}, apa kabar? (how are you?)"
+	],
+	"banter.myName": [
+    "Your name is {{name}}",
+    "Yah I know your name is {{params.name}}"
+	],
+  "banter.favourite": [
+    "My favourite is you wkwkwk (haha)"
+  ],
+	"fallback": [
+		"Have you tried the gado gado?",
+		"Why did you come to Indonesia?",
+		"You like Medan so far?",
+		"You know my name is pronounced Keh-chaap wkwk"
+	]
+}
