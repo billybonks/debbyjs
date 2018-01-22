@@ -1,76 +1,65 @@
-require('./adapter')
-class FacebookAdapter {
-  // An adapter is a specific interface to a chat source for robots.
-  //
-  // robot - A Robot instance.
-  constructor (robot) {
-    super()
-    this.robot = robot
+const Adapter = require('./adapter')
+const facebook = require('../../lib/facebook')
+
+class TransportFacebook extends Adapter {
+  send (envelope, messages) {
+    let message = messages;
+    facebook.fbBotResponse(envelope.sender.id, message.response, message.quickReplies);
   }
 
-  // Public: Raw method for sending data back to the chat source. Extend this.
-  //
-  // envelope - A Object with message, room and user details.
-  // strings  - One or more Strings for each message to send.
-  //
-  // Returns nothing.
-  send (envelope/* , ...strings */) {
-    
-  }
-
-  // Public: Raw method for sending emote data back to the chat source.
-  // Defaults as an alias for send
-  //
-  // envelope - A Object with message, room and user details.
-  // strings  - One or more Strings for each message to send.
-  //
-  // Returns nothing.
+  //add emoticons  to messages?
   emote (envelope/* , ...strings */) {
     const strings = [].slice.call(arguments, 1)
     return this.send.apply(this, [envelope].concat(strings))
   }
 
-  // Public: Raw method for building a reply and sending it back to the chat
-  // source. Extend this.
-  //
-  // envelope - A Object with message, room and user details.
-  // strings  - One or more Strings for each reply to send.
-  //
-  // Returns nothing.
   reply (envelope/* , ...strings */) {}
 
-  // Public: Raw method for setting a topic on the chat source. Extend this.
-  //
-  // envelope - A Object with message, room and user details.
-  // strings  - One more more Strings to set as the topic.
-  //
-  // Returns nothing.
-  topic (envelope/* , ...strings */) {}
+  run (app) {
+    app.post('/webhook', (req, res) => {
+      const data = req.body;
+      if (data.object !== 'page') {
+        return res.sendStatus(200);
+      }
+      this.receive(data);
+      res.sendStatus(200);
+    });
+  }
 
-  // Public: Raw method for playing a sound in the chat source. Extend this.
-  //
-  // envelope - A Object with message, room and user details.
-  // strings  - One or more strings for each play message to send.
-  //
-  // Returns nothing
-  play (envelope/* , ...strings */) {}
-
-  // Public: Raw method for invoking the bot to run. Extend this.
-  //
-  // Returns nothing.
-  run () {}
-
-  // Public: Raw method for shutting the bot down. Extend this.
-  //
-  // Returns nothing.
+  //clean up maybe?
   close () {}
 
-  // Public: Dispatch a received message to the robot.
-  //
-  // Returns nothing.
-  receive (message) {
-    this.robot.receive(message)
+  receive (data) {
+    data.entry.forEach(async ({id, messaging ,timestamp}) => {
+      let event = messaging[0]
+      if(event.read){
+        //message read tracking event
+        return
+      }
+      if(event.quick_replies){
+        //short circut to option
+      }
+      if(event.sender.id !== process.env.FB_PAGE_ID){
+        //facebook.fbNotedAndTyping(event.sender.id, 'mark_seen');
+        facebook.fbNotedAndTyping(event.sender.id);
+        let response = this.bot.handleMessage(event);
+        this.send(event, response);
+        facebook.fbNotedAndTyping(event.sender.id, 'typing_off');
+      }
+    })
   }
+  //if comment
+  // if (entry.changes) {
+  //
+  // }
+
+  //if postback
+  // if (event.postback) {
+  //   postbackPayloadToMessage(event);
+  // }
+
+  //if message
+  //
 }
 
-module.exports = Adapter;
+module.exports = TransportFacebook;

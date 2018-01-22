@@ -43,15 +43,13 @@ class Bot {
     if(matchedKlass){
       let instance = new matchedKlass();
       result = instance.run(message);
-      // store result.context
+      return result
 
     }else {
-      result = {
+      return result = {
         response: i18n.__('fallback', {sample:true}, {})
       }
     }
-
-    facebook.fbBotResponse(sender.id, result.response, result.quickReplies);
   }
 }
 

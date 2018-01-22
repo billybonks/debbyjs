@@ -8,4 +8,9 @@ i18n.configure({
 require('dotenv').config()
 app = require('./api/index.js');
 
-app.listen(8080)
+Bot = require('./bot');
+FacebookAdapter = require('./bot/transports/facebook');
+facebookAdapter = new FacebookAdapter(Bot);
+facebookAdapter.run(app);
+
+app.listen(8080);
