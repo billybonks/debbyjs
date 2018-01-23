@@ -17,6 +17,6 @@ if(process.env.SHELL){
   app.listen(8080);
 } else {
   FacebookAdapter = require('./bot/transports/facebook');
-  facebookAdapter = new FacebookAdapter(Bot);
+  facebookAdapter = new FacebookAdapter(Bot, process.env.FB_APP_ID, process.env.FB_PAGE_TOKEN);
   facebookAdapter.run(app);
 }

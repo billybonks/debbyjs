@@ -1,6 +1,5 @@
 let regexClasses = [];
 let intentClasses = [];
-let facebook = require('../lib/facebook');
 
 require('walkdir').sync('./bot/message-handlers').forEach(function(path){
   klass = require(path);

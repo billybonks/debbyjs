@@ -1,10 +1,15 @@
 const Adapter = require('./adapter')
-const facebook = require('../../lib/facebook')
+const Facebook = require('../../lib/facebook')
+let facebook = new Facebook()
 
 class TransportFacebook extends Adapter {
+  constructor(bot, appId, accessToken){
+    super(bot);
+    this.facebook = new Facebook(appId, accessToken)
+  }
   send (envelope, messages) {
     let message = messages;
-    facebook.fbBotResponse(envelope.sender.id, message.response, message.quickReplies);
+    this.facebook.fbBotResponse(envelope.sender.id, message.response, message.quickReplies);
   }
 
   //add emoticons  to messages?
@@ -40,11 +45,11 @@ class TransportFacebook extends Adapter {
         //short circut to option
       }
       if(event.sender.id !== process.env.FB_PAGE_ID){
-        //facebook.fbNotedAndTyping(event.sender.id, 'mark_seen');
-        facebook.fbNotedAndTyping(event.sender.id);
+        //this.facebook.fbNotedAndTyping(event.sender.id, 'mark_seen');
+        this.facebook.fbNotedAndTyping(event.sender.id);
         let response = this.bot.handleMessage(event);
         this.send(event, response);
-        facebook.fbNotedAndTyping(event.sender.id, 'typing_off');
+        this.facebook.fbNotedAndTyping(event.sender.id, 'typing_off');
       }
     })
   }

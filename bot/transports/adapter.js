@@ -1,5 +1,3 @@
-const Facebook = require('../../lib/facebook')
-
 class Adapter {
   // An adapter is a specific interface to a chat source for robots.
   //
