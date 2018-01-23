@@ -9,8 +9,14 @@ require('dotenv').config()
 app = require('./api/index.js');
 
 Bot = require('./bot');
-FacebookAdapter = require('./bot/transports/facebook');
-facebookAdapter = new FacebookAdapter(Bot);
-facebookAdapter.run(app);
 
-app.listen(8080);
+if(process.env.SHELL){
+  ShellAdapter = require('./bot/transports/shell');
+  shellAdapter = new ShellAdapter(Bot);
+  shellAdapter.run(app);
+  app.listen(8080);
+} else {
+  FacebookAdapter = require('./bot/transports/facebook');
+  facebookAdapter = new FacebookAdapter(Bot);
+  facebookAdapter.run(app);
+}
