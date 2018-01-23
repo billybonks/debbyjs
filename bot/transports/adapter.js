@@ -53,7 +53,7 @@ class Adapter {
   //
   // Returns nothing.
   receive (message) {
-    this.robot.receive(message)
+    this.bot.handleMessage(message);
   }
 }
 
