@@ -23,8 +23,7 @@ class Adapter {
   // strings  - One or more Strings for each message to send.
   //
   // Returns nothing.
-  emote (envelope/* , ...strings */) {
-    const strings = [].slice.call(arguments, 1)
+  emote (envelope, messages ) {
     return this.send.apply(this, [envelope].concat(strings))
   }
 
@@ -51,7 +50,8 @@ class Adapter {
   //
   // Returns nothing.
   receive (message) {
-    this.bot.handleMessage(message);
+    let result = this.bot.handleMessage(message);
+    this.send({}, result)
   }
 }
 
