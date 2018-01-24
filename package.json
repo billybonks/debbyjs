@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "debug": "node --inspect-brk index.js",
+    "debug-lah": "node --inspect index.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +18,7 @@
     "crypto": "^1.0.1",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "i18n": "^0.8.3",
+    "i18n": "git@github.com:billybonks/i18n-node.git#master",
     "lodash": "^4.17.4",
     "node-fetch": "^2.0.0-alpha.9",
     "walkdir": "0.0.12"
