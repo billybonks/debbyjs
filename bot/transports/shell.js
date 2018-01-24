@@ -10,20 +10,23 @@ const historySize =  1024
 
 const historyPath = '.bot_history'
 class AdapterShell extends Adapter {
-  send (envelope/* , ...strings */) {
-    const strings = [].slice.call(arguments, 1)
+  send (envelope, messages) {
+    debugger
+    if (messages instanceof Array) {
 
-    Array.from(strings).forEach(str => console.log(chalk.bold(`${str}`)))
+    } else {
+      console.log(chalk.bold(`${messages.response}`));
+    }
   }
 
-  emote (envelope/* , ...strings */) {
+  emote (envelope, messages) {
     const strings = [].slice.call(arguments, 1)
-    Array.from(strings).map(str => this.send(envelope, `* ${str}`))
+    Array.from(messages).map(str => this.send(envelope, `* ${str}`))
   }
 
   reply (envelope/* , ...strings */) {
     const strings = [].slice.call(arguments, 1).map((s) => `${envelope.user.name}: ${s}`)
-
+    debugger
     this.send.apply(this, [envelope].concat(strings))
   }
 
@@ -32,12 +35,16 @@ class AdapterShell extends Adapter {
 
   loadHistory((error, history) => {
     if (error) {
-      console.log(error.message)
+      //console.log(error.message)
     }
 
     this.cli.history(history)
     this.cli.interact('awesomebot> ')//`${this.robot.name}> `)
   })
+}
+
+shutdown () {
+  return process.exit(0)
 }
 
 buildCli () {
@@ -55,7 +62,7 @@ buildCli () {
     })
 
     this.cli.command('history', () => {
-      Array.from(this.cli.history()).map(item => console.log(item))
+    //  Array.from(this.cli.history()).map(item => console.log(item))
     })
 
     this.cli.on('history', item => {
