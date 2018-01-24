@@ -1,6 +1,5 @@
 let regexClasses = [];
 let intentClasses = [];
-let facebook = require('../lib/facebook');
 
 require('walkdir').sync('./bot/message-handlers').forEach(function(path){
   klass = require(path);
@@ -32,7 +31,11 @@ class Bot {
     })
   }
 
+  // LinkMessage
+  // ImageMessage
+  // TextMessage
   static handleMessage({message, recipient, sender, timestamp}){
+    //run middlewares on message
     let matchedKlass = regexClasses.find( (klass) => {
       return message.text.match(klass.regex)
     })
@@ -43,15 +46,13 @@ class Bot {
     if(matchedKlass){
       let instance = new matchedKlass();
       result = instance.run(message);
-      // store result.context
+      return result
 
     }else {
-      result = {
+      return result = {
         response: i18n.__('fallback', {sample:true}, {})
       }
     }
-
-    facebook.fbBotResponse(sender.id, result.response, result.quickReplies);
   }
 }
 
