@@ -1,6 +1,5 @@
 const Adapter = require('./adapter')
 const Facebook = require('../../lib/facebook')
-let facebook = new Facebook()
 
 class TransportFacebook extends Adapter {
   constructor(bot, appId, accessToken){
@@ -9,7 +8,7 @@ class TransportFacebook extends Adapter {
   }
   send (envelope, messages) {
     let message = messages;
-    this.facebook.fbBotResponse(envelope.sender.id, message.response, message.quickReplies);
+    this.facebook.botResponseText(envelope.sender.id, message.response, message.quickReplies);
   }
 
   //add emoticons  to messages?
@@ -21,6 +20,7 @@ class TransportFacebook extends Adapter {
   reply (envelope/* , ...strings */) {}
 
   run (app) {
+    debugger
     app.post('/webhook', (req, res) => {
       const data = req.body;
       if (data.object !== 'page') {
@@ -42,8 +42,8 @@ class TransportFacebook extends Adapter {
         return
       }
       let response = null;
-      this.facebook.fbNotedAndTyping(event.sender.id);
-      //this.facebook.fbNotedAndTyping(event.sender.id, 'mark_seen');
+      this.facebook.notedAndTyping(event.sender.id);
+      //this.facebook.notedAndTyping(event.sender.id, 'mark_seen');
       if(event.quick_replies){
         response = this.bot.runIntent(data.payload)
       }
@@ -51,7 +51,7 @@ class TransportFacebook extends Adapter {
         response = this.bot.handleMessage(event);
       }
       this.send(event, response);
-      this.facebook.fbNotedAndTyping(event.sender.id, 'typing_off');
+      this.facebook.notedAndTyping(event.sender.id, 'typing_off');
     })
   }
   //if comment
