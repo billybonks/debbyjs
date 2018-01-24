@@ -41,16 +41,17 @@ class TransportFacebook extends Adapter {
         //message read tracking event
         return
       }
+      let response = null;
+      this.facebook.fbNotedAndTyping(event.sender.id);
+      //this.facebook.fbNotedAndTyping(event.sender.id, 'mark_seen');
       if(event.quick_replies){
-        //short circut to option
+        response = this.bot.runIntent(data.payload)
       }
       if(event.sender.id !== process.env.FB_PAGE_ID){
-        //this.facebook.fbNotedAndTyping(event.sender.id, 'mark_seen');
-        this.facebook.fbNotedAndTyping(event.sender.id);
-        let response = this.bot.handleMessage(event);
-        this.send(event, response);
-        this.facebook.fbNotedAndTyping(event.sender.id, 'typing_off');
+        response = this.bot.handleMessage(event);
       }
+      this.send(event, response);
+      this.facebook.fbNotedAndTyping(event.sender.id, 'typing_off');
     })
   }
   //if comment
