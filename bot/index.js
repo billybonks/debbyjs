@@ -31,7 +31,11 @@ class Bot {
     })
   }
 
+  // LinkMessage
+  // ImageMessage
+  // TextMessage
   static handleMessage({message, recipient, sender, timestamp}){
+    //run middlewares on message
     let matchedKlass = regexClasses.find( (klass) => {
       return message.text.match(klass.regex)
     })
