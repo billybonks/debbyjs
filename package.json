@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "debug": "node --inspect-brk index.js",
-    "debug-lah": "node --inspect index.js"
+    "debug-lah": "node --inspect index.js",
+    "debug-live": "SHELL=false node --inspect index.js",
+    "debug-live-lah": "SHELL=false node --inspect-brk index.js"
   },
   "author": "",
   "license": "ISC",
