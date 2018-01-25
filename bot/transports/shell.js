@@ -11,7 +11,6 @@ const historySize =  1024
 const historyPath = '.bot_history'
 class AdapterShell extends Adapter {
   send (envelope, messages) {
-    debugger
     if (messages instanceof Array) {
 
     } else {
@@ -26,7 +25,6 @@ class AdapterShell extends Adapter {
 
   reply (envelope/* , ...strings */) {
     const strings = [].slice.call(arguments, 1).map((s) => `${envelope.user.name}: ${s}`)
-    debugger
     this.send.apply(this, [envelope].concat(strings))
   }
 
@@ -51,7 +49,6 @@ buildCli () {
     this.cli = cline()
 
     this.cli.command('*', input => {
-      debugger
       let userId = process.env.SHELL_USER_ID || '1'
       if (userId.match(/A\d+z/)) {
         userId = parseInt(userId)
