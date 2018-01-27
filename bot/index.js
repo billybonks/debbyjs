@@ -1,42 +1,41 @@
-let regexClasses = [];
-let intentClasses = [];
-
-require('walkdir').sync('./bot/message-handlers').forEach(function(path){
-  klass = require(path);
-  mountHandler(klass);
-})
-
-function mountHandler(klass) {
-  mountRegex(klass);
-  mountIntent(klass);
-}
-
-function mountRegex(klass) {
-  if(klass.intent){
-    intentClasses.push(klass);
-  }
-}
-
-function mountIntent(klass) {
-  if(klass.regex){
-    regexClasses.push(klass);
-  }
-}
-
 class Bot {
+  constructor(name, brain){
+    this.name = name;
+    this.brain = brain;
+    this.regexClasses = [];
+    this.intentClasses = [];
+    require('walkdir').sync('./bot/message-handlers').forEach((path) => {
+      let klass = require(path);
+      this.mountHandler(klass);
+    })
+  }
 
-  static mount(handlers){
+  mountIntent(klass) {
+    if(klass.regex){
+      this.regexClasses.push(klass);
+    }
+  }
+
+  mountRegex(klass) {
+    if(klass.intent){
+      this.intentClasses.push(klass);
+    }
+  }
+
+  mountHandler(klass) {
+    this.mountRegex(klass);
+    this.mountIntent(klass);
+  }
+
+  mount(handlers){
     handlers.forEach( (klass) => {
       mountHandler(klass)
     })
   }
 
-  // LinkMessage
-  // ImageMessage
-  // TextMessage
-  static handleMessage({message, recipient, sender, timestamp}){
+  handleMessage(message){
     //run middlewares on message
-    let matchedKlass = regexClasses.find( (klass) => {
+    let matchedKlass = this.regexClasses.find( (klass) => {
       return message.text.match(klass.regex)
     })
     if(!matchedKlass){

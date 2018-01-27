@@ -9,7 +9,11 @@ const chalk = require('chalk')
 const historySize =  1024
 
 const historyPath = '.bot_history'
+
+const MessageText = require('../messages/text');
+
 class AdapterShell extends Adapter {
+
   send (envelope, messages) {
     if (messages instanceof Array) {
 
@@ -37,12 +41,29 @@ class AdapterShell extends Adapter {
     }
 
     this.cli.history(history)
-    this.cli.interact('awesomebot> ')//`${this.robot.name}> `)
+    this.cli.interact(`${this.robot.name}> `);
   })
 }
 
 shutdown () {
   return process.exit(0)
+}
+
+getUser(data) {
+    return {
+      id: data.sender,
+      name: 'Sebastien Stettler'
+    }
+}
+
+constructUserId(data){
+  return `shell-${data.sender}`;
+}
+
+
+buildMessageObject(data) {
+  debugger
+  return new MessageText(data.text)
 }
 
 buildCli () {
@@ -55,7 +76,7 @@ buildCli () {
       }
 
       const userName = process.env.SHELL_USER_NAME || 'Shell'
-      this.receive({message:{text: input}, recipient:null, sender:{id:userId}});
+      this.receive({text: input, recipient:this.robot.name, sender: userId});
     })
 
     this.cli.command('history', () => {
