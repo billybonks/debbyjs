@@ -62,7 +62,6 @@ constructUserId(data){
 
 
 buildMessageObject(data) {
-  debugger
   return new MessageText(data.text)
 }
 

@@ -27,7 +27,6 @@ class AdapterFacebook extends Adapter {
   reply (envelope/* , ...strings */) {}
 
   run (app) {
-    debugger
     app.post('/webhook', (req, res) => {
       const data = req.body;
 
@@ -65,7 +64,6 @@ class AdapterFacebook extends Adapter {
   close () {}
 
   getUser(data) {
-    debugger
       return {
         id: data.sender,
         name: 'Sebastien Stettler'
