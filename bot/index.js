@@ -1,6 +1,6 @@
 class Bot {
-  constructor(name, brain){
-    this.name = name;
+  constructor(brain){
+    this.name = brain.name;
     this.brain = brain;
     this.regexClasses = [];
     this.intentClasses = [];

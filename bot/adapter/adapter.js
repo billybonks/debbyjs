@@ -49,12 +49,12 @@ class Adapter {
   // Public: Dispatch a received message to the robot.
   //
   // Returns nothing.
-  receive (data) {
+  async receive (data) {
     debugger
     let userId = this.constructUserId(data);
-    let user = this.robot.brain.findUser(userId);
+    let user = await this.robot.brain.findUser(userId);
     if(!user){
-      user = this.robot.brain.createUser(userId, this.getUser(data));
+      user = await this.robot.brain.createUser(userId, this.getUser(data));
     }
     let message = this.buildMessageObject(data);
     message.user  = user;

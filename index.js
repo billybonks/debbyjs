@@ -11,7 +11,14 @@ app = require('./api/index.js');
 
 Bot = require('./bot');
 Brain = require('./bot/brain');
-let robot = new Bot('chope', new Brain());
+let robot = new Bot(new Brain('chope', {
+  port: 6379,
+  host: '127.0.0.1',
+  family: 4,
+  password: 'auth',
+  db: 0
+}));
+
 // bot.use(removeSinglish);
 // bot.use(extractLocation);
 
