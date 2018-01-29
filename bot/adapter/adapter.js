@@ -50,16 +50,16 @@ class Adapter {
   //
   // Returns nothing.
   async receive (data) {
-    debugger
     let userId = this.constructUserId(data);
     let user = await this.robot.brain.findUser(userId);
     if(!user){
-      user = await this.robot.brain.createUser(userId, this.getUser(data));
+      //this needs to stay in the adapter because the adapter will have to fetch the user from third party
+      user = await this.robot.brain.createUser(userId, this.getUser(userId));
     }
     let message = this.buildMessageObject(data);
     message.user  = user;
     message._raw = data;
-    let result = this.robot.handleMessage(message);
+    let result = await this.robot.handleMessage(message);
     this.send(data, result);
   }
 }

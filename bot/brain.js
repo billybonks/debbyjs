@@ -12,7 +12,6 @@ class Brain {
   }
 
   async findUser(userId){
-    debugger
     let serializedUser = await this.redis.get(`${this.name}-${userId}`);
     if(serializedUser){
       return JSON.parse(serializedUser)
@@ -20,7 +19,6 @@ class Brain {
   }
 
   createUser(userId, user){
-    debugger
     return this.redis.set(`${this.name}-${userId}`, JSON.stringify(user), 'EX', 100);
   }
 }

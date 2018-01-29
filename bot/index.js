@@ -33,7 +33,7 @@ class Bot {
     })
   }
 
-  handleMessage(message){
+  async handleMessage(message, user){
     //run middlewares on message
     let matchedKlass = this.regexClasses.find( (klass) => {
       return message.text.match(klass.regex)
