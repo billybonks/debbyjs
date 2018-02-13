@@ -2,8 +2,8 @@ class Adapter {
   // An adapter is a specific interface to a chat source for robots.
   //
   // robot - A Robot instance.
-  constructor (bot) {
-    this.bot = bot;
+  constructor (robot) {
+    this.robot = robot;
   }
 
   // Public: Raw method for sending data back to the chat source. Extend this.
@@ -49,9 +49,18 @@ class Adapter {
   // Public: Dispatch a received message to the robot.
   //
   // Returns nothing.
-  receive (message) {
-    let result = this.bot.handleMessage(message);
-    this.send({}, result)
+  async receive (data) {
+    let userId = this.constructUserId(data);
+    let user = await this.robot.brain.findUser(userId);
+    if(!user){
+      //this needs to stay in the adapter because the adapter will have to fetch the user from third party
+      user = await this.robot.brain.createUser(userId, this.getUser(userId));
+    }
+    let message = this.buildMessageObject(data);
+    message.user  = user;
+    message._raw = data;
+    let result = await this.robot.handleMessage(message);
+    this.send(data, result);
   }
 }
 

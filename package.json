@@ -8,8 +8,8 @@
     "start": "node index.js",
     "debug": "node --inspect-brk index.js",
     "debug-lah": "node --inspect index.js",
-    "debug-live": "SHELL=false node --inspect index.js",
-    "debug-live-lah": "SHELL=false node --inspect-brk index.js"
+    "debug-shell": "SHELL_MODE=true node --inspect-brk index.js",
+    "debug-shell-lah": "SHELL_MODE=true node --inspect index.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "i18n": "git@github.com:billybonks/i18n-node.git#master",
+    "ioredis": "^3.2.2",
     "lodash": "^4.17.4",
     "node-fetch": "^2.0.0-alpha.9",
     "walkdir": "0.0.12"
