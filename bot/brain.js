@@ -19,7 +19,7 @@ class Brain {
   }
 
   createUser(userId, user){
-    return this.redis.set(`${this.name}-${userId}`, JSON.stringify(user), 'EX', 100);
+    return this.redis.set(`${this.name}-${userId}`, JSON.stringify(user), 'EX', 600);
   }
 }
 
