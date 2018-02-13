@@ -1,3 +1,5 @@
+const i18n = require('i18n');
+
 class BaseHandler{
   run(message, context, user){
     return {

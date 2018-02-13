@@ -1,15 +1,21 @@
+const i18n = require('i18n');
+
 class Bot {
   constructor(brain){
     this.name = brain.name;
     this.brain = brain;
     this.regexClasses = [];
     this.intentClasses = [];
-    require('walkdir').sync('./bot/message-handlers').forEach((path) => {
-      let klass = require(path);
-      this.mountHandler(klass);
-    })
   }
 
+  configureI18n(dir){
+    i18n.configure({
+      locales:['en'],
+      directory: dir,
+      updateFiles: false,
+    });
+
+  }
   mountIntent(klass) {
     if(klass.regex){
       this.regexClasses.push(klass);
@@ -29,8 +35,8 @@ class Bot {
 
   mount(handlers){
     handlers.forEach( (klass) => {
-      mountHandler(klass)
-    })
+      this.mountHandler(klass);
+    });
   }
 
   async handleMessage(message, user){
