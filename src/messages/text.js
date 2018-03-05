@@ -11,4 +11,4 @@ class MessageText extends Message {
 
 }
 
-module.exports = MessageText
+module.exports = MessageText;

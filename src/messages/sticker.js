@@ -9,4 +9,4 @@ class MessageSticker extends Message {
 
 }
 
-module.exports = MessageSticker
+module.exports = MessageSticker;

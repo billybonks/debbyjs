@@ -8,4 +8,4 @@ class MessageNegation extends Message {
 
 }
 
-module.exports = MessageNegation
+module.exports = MessageNegation;

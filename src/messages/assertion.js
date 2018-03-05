@@ -8,4 +8,4 @@ class MessageAssertion extends Message {
 
 }
 
-module.exports = MessageAssertion
+module.exports = MessageAssertion;

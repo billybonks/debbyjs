@@ -9,4 +9,4 @@ class MessageRead extends Message {
 
 }
 
-module.exports = MessageRead
+module.exports = MessageRead;

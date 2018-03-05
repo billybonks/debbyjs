@@ -6,7 +6,7 @@ class IntentTaxi extends Intent {
   }
 
   static get key(){
-    return 'banter.taxi'
+    return 'banter.taxi';
   }
 }
 

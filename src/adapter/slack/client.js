@@ -37,7 +37,7 @@ class SlackClient {
   messageWrapper(message) {
     if (this.messageHandler) {
       const {user, channel, bot_id} = message;
-      debugger
+      debugger;
       message.user = user ? user : bot_id;
       message.rawText = message.text;
       message.text = this.format.incoming(message);

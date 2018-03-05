@@ -6,7 +6,7 @@ class IntentMyName extends Intent {
   }
 
   static get key(){
-    return 'banter.myName'
+    return 'banter.myName';
   }
 }
 

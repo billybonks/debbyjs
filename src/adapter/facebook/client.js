@@ -1,5 +1,5 @@
-const fetch = require('./fetch')
-const _ = require('lodash')
+const fetch = require('./fetch');
+const _ = require('lodash');
 
 function fbQuickReplies(quickreplies) {
   if (!quickreplies || !Array.isArray(quickreplies)) return;
@@ -28,7 +28,7 @@ class FacebookSdk {
 
   constructor(pageId, accessToken) {
     this.pageId = pageId,
-    this.accessToken = accessToken
+    this.accessToken = accessToken;
   }
 
   request({ body, method='GET', apiVersion='/v2.11', endpoint='/me/messages', error=`FACEBOOK ${endpoint} ${method} ERROR` }) {

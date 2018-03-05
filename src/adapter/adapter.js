@@ -64,7 +64,7 @@ class Adapter {
     let user = await this.findOrCreateUser(userId);
     let context = await this.getContext(user);
     let message = this.buildMessageObject(data);
-    debugger
+    debugger;
     message._raw = data;
     let result = await this.robot.handleMessage(message, user, context);
     let response = message.buildResponse(result);

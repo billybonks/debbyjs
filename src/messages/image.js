@@ -9,4 +9,4 @@ class MessageImage extends Message {
 
 }
 
-module.exports = MessageImage
+module.exports = MessageImage;

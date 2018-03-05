@@ -19,12 +19,12 @@ function toQueryParams(body) {
 }
 
 module.exports = function(url, options) {
-  if(options.method === "GET"){
+  if(options.method === 'GET'){
     let params = toQueryParams(options.body);
     delete options.body;
     url = `${url}${url.indexOf('?') ? '&' : '?'}{params}`;
   } else {
-    options.body = JSON.stringify(options.body)
+    options.body = JSON.stringify(options.body);
   }
   return fetch(url, options)
     .then((response) => {
@@ -38,5 +38,5 @@ module.exports = function(url, options) {
         throw Error(json.error.message || json.error);
       }
       return json;
-    })
-}
+    });
+};

@@ -117,7 +117,7 @@ class Bot {
     }
 
     if(result){
-      await context.update(user,result.context)
+      await context.update(user,result.context);
       return result;
     } else {
       throw new Error('No response returned');

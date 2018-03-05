@@ -6,7 +6,7 @@ class IntentRobot extends Intent {
   }
 
   static get key(){
-    return 'banter.robots'
+    return 'banter.robots';
   }
 }
 

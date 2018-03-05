@@ -28,7 +28,7 @@ class AdapterFacebook extends Adapter {
       }
 
       data.entry.forEach(async ({id, messaging ,timestamp}) => {
-        let event = messaging[0]
+        let event = messaging[0];
         if(event.read){
           return;
         }
@@ -38,7 +38,7 @@ class AdapterFacebook extends Adapter {
           this.receive(event);
         }
         this.facebook.notedAndTyping(event.sender.id, 'typing_off');
-      })
+      });
 
       res.sendStatus(200);
     });
@@ -60,7 +60,7 @@ class AdapterFacebook extends Adapter {
     return {
       id: data.sender,
       name: 'Sebastien Stettler'
-    }
+    };
   }
 
   constructUserId(data){

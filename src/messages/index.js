@@ -5,4 +5,4 @@ module.exports = {
   MessageRead: require('./message'),
   MessageSticker: require('./sticker'),
   MessageText: require('./text'),
-}
+};

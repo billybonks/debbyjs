@@ -6,7 +6,7 @@ class IntentWorking extends Intent {
   }
 
   static get key(){
-    return 'banter.working'
+    return 'banter.working';
   }
 }
 

@@ -13,7 +13,7 @@ class SlackFormatter {
   Formats links and ids
   */
   links(text) {
-    const regex = new RegExp(`\
+    const regex = new RegExp('\
 <\
 ([@#!])?\
 ([^>|]+)\
@@ -21,7 +21,7 @@ class SlackFormatter {
 ([^>]+)\
 )?\
 >\
-`, 'g');
+', 'g');
 
     text = text.replace(regex, (m, type, link, label) => {
       switch (type) {

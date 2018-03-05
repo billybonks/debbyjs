@@ -9,4 +9,4 @@ class MessageIntent extends Message {
 
 }
 
-module.exports = MessageIntent
+module.exports = MessageIntent;
