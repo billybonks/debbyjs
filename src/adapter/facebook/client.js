@@ -1,4 +1,4 @@
-const fetch = require('./fetch');
+// const fetch = require('./fetch');
 const _ = require('lodash');
 
 function fbQuickReplies(quickreplies) {
@@ -31,19 +31,19 @@ class FacebookSdk {
     this.accessToken = accessToken;
   }
 
-  request({ body, method='GET', apiVersion='/v2.11', endpoint='/me/messages', error=`FACEBOOK ${endpoint} ${method} ERROR` }) {
-    const url = `https://graph.facebook.com${apiVersion}${endpoint}?access_token=${this.accessToken}`;
-    return fetch(url, {
-      method,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: body,
-    }).catch((errors) => {
-      logError(errors, errorType);
-      throw errors;
-    });
-  }
+  // request({ body, method='GET', apiVersion='/v2.11', endpoint='/me/messages', error=`FACEBOOK ${endpoint} ${method} ERROR` }) {
+  //   const url = `https://graph.facebook.com${apiVersion}${endpoint}?access_token=${this.accessToken}`;
+  //   return fetch(url, {
+  //     method,
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: body,
+  //   }).catch((errors) => {
+  //     logError(errors, errorType);
+  //     throw errors;
+  //   });
+  // }
 
   botResponseText(id, text, quick_replies) {
     const body = {
@@ -102,7 +102,6 @@ class FacebookSdk {
   }
 
   constructEvent(context, _eventName, extras={}, trackContext=false) {
-    _eventName = sanitizeEventName(_eventName);
     return Object.assign(context._fbid_ ? { page_scoped_user_id: context._fbid_ } : { anon_id: 'comment' }, {
       event: 'CUSTOM_APP_EVENTS',
       custom_events: [Object.assign(extras, { _eventName }, trackContext ? context : { psid: context._fbid_ } )],

@@ -20,7 +20,7 @@ function toQueryParams(body) {
 
 module.exports = function(url, options) {
   if(options.method === 'GET'){
-    let params = toQueryParams(options.body);
+    let params = toQueryParams(options.body); // eslint-disable-line no-unused-vars
     delete options.body;
     url = `${url}${url.indexOf('?') ? '&' : '?'}{params}`;
   } else {

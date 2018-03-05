@@ -27,7 +27,7 @@ class AdapterFacebook extends Adapter {
         return res.sendStatus(200);
       }
 
-      data.entry.forEach(async ({id, messaging ,timestamp}) => {
+      data.entry.forEach(async ({id, messaging ,timestamp}) => { // eslint-disable-line no-unused-vars
         let event = messaging[0];
         if(event.read){
           return;
@@ -92,7 +92,7 @@ class AdapterFacebook extends Adapter {
   // if(event.quick_replies){
   //   response = this.robot.runIntent(data.payload)
   // }
-    //response = this.robot.runIntent()
+  //response = this.robot.runIntent()
   //}
   //if comment
   // if (entry.changes) {

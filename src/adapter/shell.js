@@ -16,9 +16,9 @@ class AdapterShell extends Adapter {
 
   send (messages) {
     if (messages instanceof Array) {
-
+      // eslint-disable-line no-empty
     } else {
-      console.log(chalk.bold(`${messages.text}`));
+      console.log(chalk.bold(`${messages.text}`)); // eslint-disable-line no-console
     }
   }
 
@@ -39,7 +39,7 @@ class AdapterShell extends Adapter {
     return process.exit(0);
   }
 
-  getUser(data) {
+  getUser() {
     return this.user;
   }
 
@@ -61,9 +61,9 @@ class AdapterShell extends Adapter {
         userId = parseInt(userId);
       }
 
-      const userName = process.env.SHELL_USER_NAME || 'Shell';
+      const userName = process.env.SHELL_USER_NAME || 'Shell'; // eslint-disable-line no-unused-vars
       this.receive({text: input, recipient:this.robot.name, sender: userId}).catch( (error) => {
-        console.log(error);
+        console.log(error);// eslint-disable-line no-console
       });
     });
 
@@ -75,7 +75,7 @@ class AdapterShell extends Adapter {
       if (item.length > 0 && item !== 'exit' && item !== 'history') {
         fs.appendFile(historyPath, `${item}\n`, error => {
           if (error) {
-
+            // eslint-disable-line no-empty
           }
         });
       }
