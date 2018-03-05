@@ -1,7 +1,7 @@
 class BrainFile {
   constructor(properties, brain){
     this.brain = brain;
-    this.properties = properties;
+    this.properties = properties || {};
   }
 
   get properties() {

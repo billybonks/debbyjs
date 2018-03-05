@@ -44,14 +44,14 @@ class Adapter {
   close () {}
 
   async getContext(user){
-    return this.robot.brain.getContext(user);
+    return this.robot.brain.getContext(user.id);
   }
 
   async findOrCreateUser(userId){
-    let user = await this.robot.brain.findUser(userId);
+    let user = await this.robot.brain.getUser(userId);
     if(!user){
       //this needs to stay in the adapter because the adapter will have to fetch the user from third party
-      user = await this.robot.brain.createUser(userId, await this.getUser(userId));
+      user = await this.robot.brain.saveUser(userId, await this.getUser(userId));
     }
     return user;
   }
