@@ -21,8 +21,9 @@
     "crypto": "^1.0.1",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "i18n": "https://github.com:billybonks/i18n-node.git#master",
+    "i18n": "https://github.com/billybonks/i18n-node.git#eb7efa68b79e2786018124f74e49aaa1d97600e5",
     "ioredis": "^3.2.2",
+    "jest": "^22.4.2",
     "lodash": "^4.17.4",
     "node-fetch": "^2.0.0-alpha.9",
     "walkdir": "0.0.12"
@@ -30,6 +31,7 @@
   "devDependencies": {
     "chalk": "^2.3.0",
     "cline": "^0.8.2",
+    "eslint": "^4.18.2",
     "readline": "^1.3.0"
   },
   "directories": {
