@@ -4,7 +4,7 @@ const RegexIntent = require('../../../src/engines/regex/intent');
 describeClass(() => {
   describe('#mountIntent', ()=> {
     test('it mounts if regex property is not null', () => {
-      subject.mountIntent(new RegexIntent());
+      subject.mountIntent(RegexIntent);
       expect(subject.regexClasses.length).toEqual(1);
     });
 
