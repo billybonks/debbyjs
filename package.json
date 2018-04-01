@@ -50,7 +50,8 @@
       },
       {
         "testPathIgnorePatterns": [
-          "api"
+          "api",
+          "coverage"
         ],
         "displayName": "lint",
         "runner": "jest-runner-eslint",
