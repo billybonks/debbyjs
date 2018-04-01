@@ -21,7 +21,13 @@ describeClass(() => {
   });
 
   describe('#buildResponseFromKey', () => {
+    let orig;
+    afterEach(() => {
+      i18n.__ = orig;
+    });
+    
     beforeEach(() => {
+      orig = i18n.__;
       i18n.__ = jest.fn();
     });
 

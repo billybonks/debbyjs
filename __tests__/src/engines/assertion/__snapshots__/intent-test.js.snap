@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit | IntentAssertion #run returns expected hash 1`] = `
+Object {
+  "context": Object {
+    "lastMessage": "assertedIntent",
+  },
+  "quickReplies": "assertedIntent",
+  "response": "assertedIntent",
+}
+`;

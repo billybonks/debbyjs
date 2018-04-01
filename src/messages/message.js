@@ -7,11 +7,11 @@ class Message {
     this.room = room;
   }
 
-  buildResponse(text) {
+  buildResponse(response) {
     return {
       user:this.user,
       room:this.room,
-      text: text.response,
+      text: response.response,
     };
     //not a constructor apparently
     //return new MessageText(this.user, this.room, text.response);

@@ -1,4 +1,3 @@
-
 const setup = function(klass, callback){
   beforeEach(function(){
     global.subject = new klass();

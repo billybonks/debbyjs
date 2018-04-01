@@ -3,7 +3,7 @@ const Message = require('./message');
 class MessageImage extends Message {
 
   constructor (user, room, imageUrl) {
-    super();
+    super(user, room);
     this.imageUrl = imageUrl;
   }
 
