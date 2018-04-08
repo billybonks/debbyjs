@@ -43,10 +43,16 @@ class Adapter {
   // Returns nothing.
   close () {}
 
-  async getContext(user){
-    return this.robot.brain.getContext(user.id);
+
+  async findOrCreateContext(user) {
+    let context = this.robot.brain.getContext(user.id);
+    if(!context){
+      context = await this.robot.brain.saveContext(user.id, {});
+    }
+    return context;
   }
 
+  
   async findOrCreateUser(userId){
     let user = await this.robot.brain.getUser(userId);
     if(!user){
@@ -62,7 +68,7 @@ class Adapter {
   async receive (data) {
     let userId = this.constructUserId(data);
     let user = await this.findOrCreateUser(userId);
-    let context = await this.getContext(user);
+    let context = await this.findOrCreateContext(user);
     let message = this.buildMessageObject(data);
     message._raw = data;
     let result = await this.robot.handleMessage(message, user, context);

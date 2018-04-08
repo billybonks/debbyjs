@@ -8,7 +8,7 @@ Array [
 
 exports[`Unit | RedisContext #generateRedisKey returns expected value 1`] = `"billybonks-context-22"`;
 
-exports[`Unit | RedisContext #get it calls redis.set 1`] = `
+exports[`Unit | RedisContext #save it calls redis.set 1`] = `
 Array [
   "billybonks-context-12",
   "{\\"name\\":\\"bob\\",\\"something\\":\\"awesome\\"}",

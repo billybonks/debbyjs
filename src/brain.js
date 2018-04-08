@@ -9,19 +9,19 @@ class Brain {
   }
 
   getUser(id){
-    this.userStore.fetch(id);
+    return this.userStore.fetch(id);
   }
 
   saveUser(userId, user){
-    this.userStore.save(userId, user);
+    return this.userStore.update(userId, user);
   }
 
   getContext(id){
-    this.contextStore.fetch(id);
+    return this.contextStore.fetch(id);
   }
 
   saveContext(id, context){
-    this.contextStore.save(id, context);
+    return this.contextStore.save(id, context);
   }
 }
 

@@ -33,7 +33,7 @@ describeClass(() => {
   });
 
 
-  describe('#saveContext', () => {
+  describe.only('#saveContext', () => {
     test('propergates to correct contextStore.save', () => {
       subject.saveContext(18, {name:'cooldude', account:99, word:true});
       expect(subject.contextStore.save.mock.calls.length).toEqual(1);

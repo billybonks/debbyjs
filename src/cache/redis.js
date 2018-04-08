@@ -21,8 +21,13 @@ class CacheRedis {
     }
   }
 
-  async save(id, object){
+  async update(id, object){
     return this.redis.set(this.generateRedisKey(id), JSON.stringify(object), 'EX', this.expiry);
+  }
+
+  async create(id, object) {
+    await this.update(id, object);
+    return new this.klass(object);
   }
 }
 

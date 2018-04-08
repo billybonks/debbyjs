@@ -33,15 +33,16 @@ describe('#fetch', () => {
   });
 });
 
-describe('#get', () => {
+describe('#save', () => {
   beforeEach(() => {
     subject = new Subject('billybonks', {}, 600);
     subject.redis.set = jest.fn();
   });
 
-  test('it calls redis.set', () => {
-    subject.save(12, {name:'bob', something:'awesome'});
+  test('it calls redis.set', async () => {
+    let result = await subject.create(12, {name:'bob', something:'awesome'});
     expect(subject.redis.set.mock.calls.length).toEqual(1);
     expect(subject.redis.set.mock.calls[0]).toMatchSnapshot();
+    expect(result.constructor).toEqual(subject.klass);
   });
 });
