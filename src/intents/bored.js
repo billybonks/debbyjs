@@ -1,6 +1,6 @@
-const Intent = require('../intent');
+const RegexIntent = require('../engines/regex/intent');
 
-class IntentBored extends Intent  {
+class IntentBored extends RegexIntent  {
   static get regex(){
     return /\bbor(?:ed|ing)\b/i;
   }

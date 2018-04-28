@@ -1,6 +1,6 @@
-const Intent = require('../intent');
+const RegexIntent = require('../engines/regex/intent');
 
-class IntentTaxi extends Intent {
+class IntentTaxi extends RegexIntent {
   static get regex(){
     return /\btaxi\b|\bcab\b|\buber\b|\bgrab\b/i;
   }

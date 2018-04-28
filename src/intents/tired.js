@@ -1,6 +1,6 @@
-const Intent = require('../intent');
+const RegexIntent = require('../engines/regex/intent');
 
-class IntentTired extends Intent {
+class IntentTired extends RegexIntent {
   static get regex(){
     return /\btir(?:ed|ing)\b|\bshag\b/i;
   }

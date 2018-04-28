@@ -1,6 +1,6 @@
-const Intent = require('../intent');
+const RegexIntent = require('../engines/regex/intent');
 
-class IntentLaughing extends Intent {
+class IntentLaughing extends RegexIntent {
   static get regex(){
     return /\b(a*ha+h[ha]*|o?l+o+l+[ol]*)\b/i;
   }

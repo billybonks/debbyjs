@@ -1,6 +1,6 @@
-const Intent = require('../intent');
+const RegexIntent = require('../engines/regex/intent');
 
-class IntentYourName extends Intent {
+class IntentYourName extends RegexIntent {
   static get regex(){
     return /\bwho\s(are|r)\b|\b(yo)?ur\sname\b/i;
   }

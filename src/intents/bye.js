@@ -1,6 +1,6 @@
-const Intent = require('../intent');
+const RegexIntent = require('../engines/regex/intent');
 
-class IntentBye extends Intent {
+class IntentBye extends RegexIntent {
   static get regex(){
     return /bye\b/i;
   }

@@ -1,6 +1,6 @@
-const Intent = require('../intent');
+const RegexIntent = require('../engines/regex/intent');
 
-class IntentGreet extends Intent {
+class IntentGreet extends RegexIntent {
   static get regex(){
     return /\bhi\b|\bhello\b/i;
   }

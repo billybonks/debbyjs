@@ -1,6 +1,6 @@
-const Intent = require('../intent');
+const RegexIntent = require('../engines/regex/intent');
 
-class IntentRobot extends Intent {
+class IntentRobot extends RegexIntent {
   static get regex(){
     return /\bhuman\b|\b(ro)?bot\b|\bmachine\b|\bapp\b|\bprogram\b|\breal\b/i;
   }
