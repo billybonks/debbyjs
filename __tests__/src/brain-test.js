@@ -4,9 +4,9 @@ describeClass(() => {
 
   beforeEach(() => {
     subject.userStore.fetch = jest.fn();
-    subject.userStore.save = jest.fn();
+    subject.userStore.create = jest.fn();
     subject.contextStore.fetch = jest.fn();
-    subject.contextStore.save = jest.fn();
+    subject.contextStore.create = jest.fn();
   });
   describe('#getUser', () => {
     test('propergates to correct userStore.fetch', () => {
@@ -36,8 +36,8 @@ describeClass(() => {
   describe.only('#saveContext', () => {
     test('propergates to correct contextStore.save', () => {
       subject.saveContext(18, {name:'cooldude', account:99, word:true});
-      expect(subject.contextStore.save.mock.calls.length).toEqual(1);
-      expect(subject.contextStore.save.mock.calls[0]).toMatchSnapshot();
+      expect(subject.contextStore.create.mock.calls.length).toEqual(1);
+      expect(subject.contextStore.create.mock.calls[0]).toMatchSnapshot();
     });
   });
 });

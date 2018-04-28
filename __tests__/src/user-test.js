@@ -7,5 +7,5 @@ describeClass(() => {
     subject.id = 1;
   });
 
-  require('./shared/test-for-brain-file-child')('saveUser', [{x:1}], [1, {x:1}]);
+  require('./shared/test-for-brain-file-child')('update', [{x:1}], [1, {x:1}]);
 });

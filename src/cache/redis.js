@@ -17,7 +17,7 @@ class CacheRedis {
     let serializedData = await this.redis.get(this.generateRedisKey(id));
     if(serializedData){
       let data = JSON.parse(serializedData);
-      return new this.klass(data, this);
+      return this.constructKlass(id, data);
     }
   }
 
@@ -27,7 +27,13 @@ class CacheRedis {
 
   async create(id, object) {
     await this.update(id, object);
-    return new this.klass(object);
+    return this.constructKlass(id, object);
+  }
+
+  constructKlass(id, data){
+    let result =  new this.klass(data);
+    result.store = this;
+    return result;
   }
 }
 

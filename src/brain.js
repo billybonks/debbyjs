@@ -13,7 +13,7 @@ class Brain {
   }
 
   saveUser(userId, user){
-    return this.userStore.update(userId, user);
+    return this.userStore.create(userId, user);
   }
 
   getContext(id){
@@ -21,7 +21,7 @@ class Brain {
   }
 
   saveContext(id, context){
-    return this.contextStore.save(id, context);
+    return this.contextStore.create(id, context);
   }
 }
 
