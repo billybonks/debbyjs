@@ -3,9 +3,7 @@
 exports[`Unit | Bot instance functions #handleMessage if finds string uses it 1`] = `
 Object {
   "context": Object {
-    "context": Object {
-      "lastMessage": null,
-    },
+    "lastMessage": null,
   },
   "response": "fallback.assertion",
 }
@@ -16,9 +14,7 @@ exports[`Unit | Bot instance functions #handleMessage if function executes it 1`
 exports[`Unit | Bot instance functions #handleMessage if no message found uses fallback 1`] = `
 Object {
   "context": Object {
-    "context": Object {
-      "lastMessage": null,
-    },
+    "lastMessage": null,
   },
   "response": "fallback",
 }

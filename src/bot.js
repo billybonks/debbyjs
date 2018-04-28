@@ -46,11 +46,11 @@ class Bot {
     } else {
       result = {
         response: i18n.__(matchedKlass, {sample:true}, {}),
-        context: {context: {lastMessage: null}}
+        context: {lastMessage: null}
       };
     }
     if(result){
-      await context.update(user,result.context);
+      await context.update(result.context);
       return result;
     } else {
       throw new Error('No response returned');
