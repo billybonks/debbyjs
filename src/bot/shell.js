@@ -1,4 +1,4 @@
-const Adapter = require('./adapter');
+const Bot = require('./bot');
 
 const fs = require('fs');
 const readline = require('readline');
@@ -12,7 +12,7 @@ const historyPath = '.bot_history';
 
 const { MessageText } = require('../messages');
 
-class AdapterShell extends Adapter {
+class ShellBot extends Bot {
 
   send (messages) {
     if (messages instanceof Array) {
@@ -132,4 +132,4 @@ function loadHistory (callback) {
     .on('error', callback);
 }
 
-module.exports = AdapterShell;
+module.exports = ShellBot;

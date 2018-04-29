@@ -3,9 +3,7 @@ const EngineAssertion = require('./engines/assertion');
 const EngineRegex = require('./engines/regex');
 
 class Bot {
-  constructor(brain){
-    this.name = brain.name;
-    this.brain = brain;
+  constructor(){
     this.engines = [new EngineAssertion(), new EngineRegex()];
   }
 

@@ -1,4 +1,4 @@
-class BrainFile {
+class File {
   constructor(properties, brain){
     this.brain = brain;
     this.properties = properties || {};
@@ -38,4 +38,4 @@ class BrainFile {
   }
 }
 
-module.exports = BrainFile;
+module.exports = File;

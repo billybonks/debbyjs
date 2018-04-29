@@ -1,6 +1,6 @@
 const RedisUser = require('./cache/redis-user');
 const RedisContext = require('./cache/redis-context');
-class Brain {
+class HardDrive {
 
   constructor(name, redis){
     this.name = name;
@@ -25,4 +25,4 @@ class Brain {
   }
 }
 
-module.exports = Brain;
+module.exports = HardDrive;

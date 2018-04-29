@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit | HardDrive #saveContext propergates to correct contextStore.save 1`] = `
+Array [
+  18,
+  Object {
+    "account": 99,
+    "name": "cooldude",
+    "word": true,
+  },
+]
+`;

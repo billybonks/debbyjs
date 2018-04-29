@@ -1,4 +1,4 @@
-const Adapter = require('../adapter');
+const Bot = require('../bot');
 const Facebook = require('./client');
 const { MessageText } = require('../../messages');
 const MessageImage = require('../../messages/image');
@@ -6,11 +6,11 @@ const MessageIntent = require('../../messages/intent');
 const MessageRead = require('../../messages/read');
 const MessageSticker = require('../../messages/sticker');
 
-class AdapterFacebook extends Adapter {
+class FacebookBot extends Bot {
 
 
-  constructor(robot, appId, accessToken){
-    super(robot);
+  constructor(brain, {appId, accessToken}){
+    super(brain);
     this.facebook = new Facebook(appId, accessToken);
   }
 
@@ -108,4 +108,4 @@ class AdapterFacebook extends Adapter {
   //
 }
 
-module.exports = AdapterFacebook;
+module.exports = FacebookBot;

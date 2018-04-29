@@ -1,6 +1,6 @@
-const BrainFile = require('./brain-file');
+const File = require('./file');
 
-class Context  extends BrainFile {
+class Context  extends File {
 
   update(data){
     if(data) {

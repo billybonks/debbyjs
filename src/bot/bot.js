@@ -1,9 +1,10 @@
-class Adapter {
+class Bot {
   // An adapter is a specific interface to a chat source for robots.
   //
   // robot - A Robot instance.
-  constructor (robot) {
-    this.robot = robot;
+  constructor ({hardDrive, brain}) {
+    this.hardDrive = hardDrive;
+    this.brain = brain;
   }
 
   // Public: Raw method for sending data back to the chat source. Extend this.
@@ -45,19 +46,19 @@ class Adapter {
 
 
   async findOrCreateContext(userId) {
-    let context = await this.robot.brain.getContext(userId);
+    let context = await this.hardDrive.getContext(userId);
     if(!context){
-      context = await this.robot.brain.saveContext(userId, {});
+      context = await this.hardDrive.saveContext(userId, {});
     }
     return context;
   }
 
 
   async findOrCreateUser(userId){
-    let user = await this.robot.brain.getUser(userId);
+    let user = await this.hardDrive.getUser(userId);
     if(!user){
       //this needs to stay in the adapter because the adapter will have to fetch the user from third party
-      user = await this.robot.brain.saveUser(userId, await this.getUser(userId));
+      user = await this.hardDrive.saveUser(userId, await this.getUser(userId));
     }
     return user;
   }
@@ -71,10 +72,10 @@ class Adapter {
     let context = await this.findOrCreateContext(userId);
     let message = this.buildMessageObject(data);
     message._raw = data;
-    let result = await this.robot.handleMessage(message, user, context);
+    let result = await this.brain.handleMessage(message, user, context);
     let response = message.buildResponse(result);
     return this.send(response);
   }
 }
 
-module.exports = Adapter;
+module.exports = Bot;

@@ -1,10 +1,10 @@
-const Adapter = require('../adapter');
+const Bot = require('../bot');
 const SlackClient = require('./client');
 const { MessageText } = require('../../messages');
 
-class TransportSlack extends Adapter {
-  constructor(bot, options){
-    super(bot);
+class SlackBot extends Bot {
+  constructor({brain, options}){
+    super(brain);
     if(options){
       this.client = new SlackClient({token: options.accessToken});
     }
@@ -51,4 +51,4 @@ class TransportSlack extends Adapter {
   }
 }
 
-module.exports = TransportSlack;
+module.exports = SlackBot;

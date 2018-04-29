@@ -1,6 +1,6 @@
-const BrainFile = require('./brain-file');
+const File = require('./file');
 
-class User extends BrainFile {
+class User extends File {
   update(data){
     if(data) {
       Object.assign(this._data, data);
