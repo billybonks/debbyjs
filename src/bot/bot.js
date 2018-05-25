@@ -1,3 +1,12 @@
+const winston = require('winston');
+const { format } = require('logform');
+
+const alignedWithColorsAndTime = format.combine(
+  format.colorize(),
+  format.timestamp(),
+  format.align(),
+  format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+);
 class Bot {
   // An adapter is a specific interface to a chat source for robots.
   //
@@ -5,6 +14,12 @@ class Bot {
   constructor ({hardDrive, brain}) {
     this.hardDrive = hardDrive;
     this.brain = brain;
+    this.logger = winston.createLogger({
+      format: alignedWithColorsAndTime,
+      transports: [
+        new winston.transports.Console(),
+      ]
+    });
   }
 
   // Public: Raw method for sending data back to the chat source. Extend this.
@@ -48,7 +63,10 @@ class Bot {
   async findOrCreateContext(userId) {
     let context = await this.hardDrive.getContext(userId);
     if(!context){
+      this.logger.info(`Caching context ${userId}`);
       context = await this.hardDrive.saveContext(userId, {});
+    } else {
+      this.logger.info(`Found cached context ${userId} ${JSON.stringify(context.properties)}`);
     }
     return context;
   }
@@ -57,8 +75,12 @@ class Bot {
   async findOrCreateUser(userId){
     let user = await this.hardDrive.getUser(userId);
     if(!user){
+      this.logger.info(`Caching user ${userId}`);
+
       //this needs to stay in the adapter because the adapter will have to fetch the user from third party
       user = await this.hardDrive.saveUser(userId, await this.getUser(userId));
+    } else {
+      this.logger.info(`Found cached user ${userId}`);
     }
     return user;
   }

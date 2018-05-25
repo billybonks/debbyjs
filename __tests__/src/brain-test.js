@@ -2,7 +2,7 @@ const EngineAssertion = require('../../src/engines/assertion');
 const EngineRegex = require('../../src/engines/regex');
 const IntentRegex = require('../../src/engines/regex/intent');
 const IntentAssertion = require('../../src/engines/assertion/intent');
-Subject = require('../../src/bot');
+Subject = require('../../src/brain');
 const i18n = require('i18n');
 let subject = null;
 

@@ -37,7 +37,6 @@ class Bot {
     }
 
     let result = null;
-
     if(typeof matchedKlass == 'function'){
       let instance = new matchedKlass();
       result = await instance.run(message, user, context);

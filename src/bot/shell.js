@@ -31,7 +31,7 @@ class ShellBot extends Bot {
       }
 
       this.cli.history(history);
-      this.cli.interact(`${this.robot.name}> `);
+      this.cli.interact(`${this.hardDrive.name}> `);
     });
   }
 
@@ -62,7 +62,7 @@ class ShellBot extends Bot {
       }
 
       const userName = process.env.SHELL_USER_NAME || 'Shell'; // eslint-disable-line no-unused-vars
-      this.receive({text: input, recipient:this.robot.name, sender: userId}).catch( (error) => {
+      this.receive({text: input, recipient:this.hardDrive.name, sender: userId}).catch( (error) => {
         console.log(error);// eslint-disable-line no-console
       });
     });

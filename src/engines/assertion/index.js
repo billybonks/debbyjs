@@ -9,7 +9,7 @@ class EngineRegex extends EngineBase {
 
   mountIntent(klass) {
     if(this.extendsKlass(klass, AssertionIntent)){
-      this.intentKeys[klass.target.key] = klass;
+      this.intentKeys[klass.key] = klass;
     }
   }
 
@@ -19,7 +19,7 @@ class EngineRegex extends EngineBase {
     if(message.text.match(regex)){
       if(context){
         matchedKlass = this.intentKeys[context.lastMessage];
-        if(matchedKlass && matchedKlass.prototype[type]) {
+        if(matchedKlass) {
           return matchedKlass;
         }
       }
