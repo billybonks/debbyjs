@@ -5,7 +5,7 @@ class User extends File {
     if(data) {
       Object.assign(this._data, data);
     }
-    return this.store.update(this.id, this._data);
+    return this.store.update(this.redisKey, this._data);
   }
 }
 

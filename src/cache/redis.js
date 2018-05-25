@@ -33,6 +33,7 @@ class CacheRedis {
   constructKlass(id, data){
     let result =  new this.klass(data);
     result.store = this;
+    result.redisKey = id;
     return result;
   }
 }
