@@ -3,8 +3,8 @@ const SlackClient = require('./client');
 const { MessageText } = require('../../messages');
 
 class SlackBot extends Bot {
-  constructor({brain, options}){
-    super(brain);
+  constructor({hardDrive, brain, options}){
+    super({hardDrive, brain});
     if(options){
       this.client = new SlackClient({token: options.accessToken});
     }
