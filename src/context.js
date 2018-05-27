@@ -6,7 +6,7 @@ class Context  extends File {
     if(data) {
       Object.assign(this._data, data);
     }
-    return this.store.update(this.userId, this._data);
+    return this.store.update(this.redisKey, this._data);
   }
 }
 

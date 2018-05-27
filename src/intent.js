@@ -10,6 +10,14 @@ class Intent{
     };
   }
 
+  buildResponse(key, options, context, response){
+    return {
+      response: response,
+      context: { lastMessage: context || key},
+    };
+  }
+
+
   run(){
     return this.buildResponseFromKey(this.constructor.key);
   }
