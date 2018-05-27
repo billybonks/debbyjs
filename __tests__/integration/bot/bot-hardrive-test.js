@@ -8,7 +8,7 @@ describe('Integration | Adapter -> hard-drive', () => {
     // this.robot = {brain: };
     this.hardDrive = new HardDrive('asd', {});
     this.adapter = new Adapter({hardDrive: this.hardDrive});
-    this.adapter.getUser = function() { return {id:12, name:'seb'};};
+    this.adapter.getRemoteUser = function() { return {id:12, name:'seb'};};
   });
 
   describe('#findOrCreateUser', () => {
@@ -36,11 +36,11 @@ describe('Integration | Adapter -> hard-drive', () => {
       beforeEach(async () => {
         await this.hardDrive.userStore.redis.set('asd-12',
           JSON.stringify({id: 12, someState: 'hello'}), 'EX', 100);
-        jest.spyOn(this.hardDrive, 'getUser');
+        jest.spyOn(this.hardDrive, 'getCachedUser');
       });
 
       afterEach( async () => {
-        this.hardDrive.getUser.mockRestore();
+        this.hardDrive.getCachedUser.mockRestore();
       });
 
       it('finds and returns expected hash', async () => {
@@ -49,7 +49,7 @@ describe('Integration | Adapter -> hard-drive', () => {
         expect(result.store).toBeTruthy();
         expect(result.id).toEqual(12);
         expect(result._data).toEqual({id: 12, someState: 'hello'});
-        expect(this.hardDrive.getUser).toBeCalled();
+        expect(this.hardDrive.getCachedUser).toBeCalled();
         expect(this.hardDrive.saveUser).not.toBeCalled();
       });
 

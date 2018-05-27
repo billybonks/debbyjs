@@ -56,7 +56,7 @@ class FacebookBot extends Bot {
   //clean up maybe?
   close () {}
 
-  getUser(data) {
+  getRemoteUser(data) {
     return {
       id: data.sender,
       name: 'Sebastien Stettler'

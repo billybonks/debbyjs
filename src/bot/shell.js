@@ -39,7 +39,7 @@ class ShellBot extends Bot {
     return process.exit(0);
   }
 
-  getUser() {
+  getRemoteUser() {
     return this.user;
   }
 

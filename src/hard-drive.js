@@ -8,7 +8,7 @@ class HardDrive {
     this.contextStore = new RedisContext(name, redis, 600);
   }
 
-  getUser(id){
+  getCachedUser(id){
     return this.userStore.fetch(id);
   }
 

@@ -73,12 +73,12 @@ class Bot {
 
 
   async findOrCreateUser(userId){
-    let user = await this.hardDrive.getUser(userId);
+    let user = await this.hardDrive.getCachedUser(userId);
     if(!user){
       this.logger.info(`Caching user ${userId}`);
 
       //this needs to stay in the adapter because the adapter will have to fetch the user from third party
-      user = await this.hardDrive.saveUser(userId, await this.getUser(userId));
+      user = await this.hardDrive.saveUser(userId, await this.getRemoteUser(userId));
     } else {
       this.logger.info(`Found cached user ${userId}`);
     }
