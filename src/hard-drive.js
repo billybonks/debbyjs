@@ -12,8 +12,34 @@ class HardDrive {
     return this.userStore.fetch(id);
   }
 
+  async getUser(id){
+    let user = await this.getCachedUser(id);
+    if(!user) {
+      user = await this.getLocalUser(id);
+      if(user) {
+        return this.cacheUser(id, user);
+      } else {
+        return null;
+      }
+    }
+    return user;
+  }
+
+  getLocalUser() {
+    return null;
+  }
+
+  cacheUser(id, user){
+    return this.userStore.create(id, user);
+  }
+
   saveUser(userId, user){
-    return this.userStore.create(userId, user);
+    user = this.saveLocalUser(userId, user) || user;
+    this.cacheUser(userId, user);
+  }
+
+  saveLocalUser(/*userId, _user*/){
+    return null;
   }
 
   getContext(id){

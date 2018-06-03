@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Integration | Adapter -> hard-drive #findOrCreateUser no user creates a new one 1`] = `undefined`;

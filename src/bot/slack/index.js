@@ -23,7 +23,7 @@ class SlackBot extends Bot {
     return sent_messages;
   }
 
-  async getRemovteUser(userId){
+  async getRemoteUser(userId){
     let user = await this.client.web.users.info(userId.split('_')[1]);
     return user.user;
   }

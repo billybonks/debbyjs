@@ -73,7 +73,7 @@ class Bot {
 
 
   async findOrCreateUser(userId){
-    let user = await this.hardDrive.getCachedUser(userId);
+    let user = await this.hardDrive.getUser(userId);
     if(!user){
       this.logger.info(`Caching user ${userId}`);
 
