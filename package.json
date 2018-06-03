@@ -9,6 +9,7 @@
     "debug": "node --inspect-brk index.js",
     "debug-lah": "node --inspect index.js",
     "debug-shell": "SHELL_MODE=true node --inspect-brk index.js",
+    "debug-test": "node  --inspect-brk /usr/local/bin/jest",
     "debug-shell-lah": "SHELL_MODE=true node --inspect index.js"
   },
   "author": "",
