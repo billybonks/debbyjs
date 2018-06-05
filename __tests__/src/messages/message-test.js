@@ -2,7 +2,9 @@ const describeClass = require('../../helpers/class');
 
 describeClass(() => {
   describe('#buildResponse', () => {
-    test.skip('handles bare strings');
+    test.skip('handles bare strings',() => {
+
+    });
 
     test('returns expectedValue', () => {
       let subject = new Subject('a', 'b');

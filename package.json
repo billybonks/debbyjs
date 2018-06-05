@@ -24,7 +24,7 @@
     "express": "^4.16.2",
     "i18n": "https://github.com/billybonks/i18n-node.git#eb7efa68b79e2786018124f74e49aaa1d97600e5",
     "ioredis": "^3.2.2",
-    "jest": "^22.4.2",
+    "jest": "^23.1.0",
     "jest-runner-eslint": "^0.4.0",
     "lodash": "^4.17.4",
     "node-fetch": "^2.0.0-alpha.9",
