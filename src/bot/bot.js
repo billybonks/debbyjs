@@ -72,8 +72,8 @@ class Bot {
   }
 
 
-  async findOrCreateUser(userId){
-    let user = await this.hardDrive.getUser(userId);
+  async findOrCreateUser(userId, data){
+    let user = await this.hardDrive.getUser(userId, data);
     if(!user){
       this.logger.info(`Caching user ${userId}`);
 
@@ -90,7 +90,7 @@ class Bot {
   // Returns nothing.
   async receive (data) {
     let userId = this.constructUserId(data);
-    let user = await this.findOrCreateUser(userId);
+    let user = await this.findOrCreateUser(userId, data);
     let context = await this.findOrCreateContext(userId);
     let message = this.buildMessageObject(data);
     message._raw = data;

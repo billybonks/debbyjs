@@ -12,10 +12,10 @@ class HardDrive {
     return this.userStore.fetch(id);
   }
 
-  async getUser(id){
+  async getUser(id, data){
     let user = await this.getCachedUser(id);
     if(!user) {
-      user = await this.getLocalUser(id);
+      user = await this.getLocalUser(id, data);
       if(user) {
         return this.cacheUser(id, user);
       } else {
@@ -33,8 +33,8 @@ class HardDrive {
     return this.userStore.create(id, user);
   }
 
-  saveUser(userId, user){
-    user = this.saveLocalUser(userId, user) || user;
+  async saveUser(userId, user){
+    user = await this.saveLocalUser(userId, user) || user;
     this.cacheUser(userId, user);
   }
 

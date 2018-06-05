@@ -2,6 +2,7 @@ let Adapter = require('../../../src/bot/bot');
 let HardDrive = require('../../../src/hard-drive');
 
 describe('user management story', () => {
+  let rawUserData = {team_id:'12123', other:'somethingelse'};
   beforeEach( () => {
     this.hardDrive = new HardDrive('asd', {});
     this.adapter = new Adapter({hardDrive: this.hardDrive});
@@ -17,20 +18,20 @@ describe('user management story', () => {
       });
 
       it('fetches remote user', async () => {
-        await this.adapter.findOrCreateUser(12);
+        await this.adapter.findOrCreateUser(12, rawUserData);
         expect(this.adapter.getRemoteUser).toBeCalled();
         expect(this.adapter.getRemoteUser).toBeCalledWith(12);
       });
       test('tries to fetch local user', async () => {
         this.hardDrive.getLocalUser = jest.fn().mockReturnValue(null);
-        await this.adapter.findOrCreateUser(12);
+        await this.adapter.findOrCreateUser(12, rawUserData);
         expect(this.hardDrive.getLocalUser).toBeCalled();
-        expect(this.hardDrive.getLocalUser).toBeCalledWith(12);
+        expect(this.hardDrive.getLocalUser).toBeCalledWith(12, rawUserData);
       });
 
       test('calls saveUser on harddrive with remote user data', async () => {
         this.hardDrive.saveLocalUser = jest.fn().mockReturnValue(null);
-        await this.adapter.findOrCreateUser(12);
+        await this.adapter.findOrCreateUser(12, rawUserData);
         expect(this.hardDrive.saveLocalUser).toBeCalledWith(12, { id:12, name:'seb'});
         expect(this.hardDrive.userStore.create).toBeCalledWith(12, { id:12, name:'seb'});
       });
@@ -46,7 +47,7 @@ describe('user management story', () => {
         });
 
         test('it returns users', async () => {
-          let result = await this.adapter.findOrCreateUser(12);
+          let result = await this.adapter.findOrCreateUser(12, rawUserData);
           expect(this.hardDrive.userStore.redis.get).toHaveBeenCalledWith('asd-12');
           expect(this.adapter.getRemoteUser).not.toHaveBeenCalled();
           expect(result._data).toMatchSnapshot();
@@ -54,7 +55,7 @@ describe('user management story', () => {
         });
 
         test('uses correct id when updating user', async () => {
-          let result = await this.adapter.findOrCreateUser(12);
+          let result = await this.adapter.findOrCreateUser(12, rawUserData);
           this.hardDrive.userStore.redis.set = jest.fn();
           result.properties = {
             id: 115,
@@ -74,10 +75,10 @@ describe('user management story', () => {
         });
 
         test('it checks the database', async() => {
-          let result = await this.adapter.findOrCreateUser(12);
+          let result = await this.adapter.findOrCreateUser(12, rawUserData);
           expect(this.hardDrive.userStore.redis.get).toHaveBeenCalledWith('asd-12');
           expect(this.hardDrive.userStore.redis.set).toHaveBeenCalledWith('asd-12', jsonUser, 'EX', 600);
-          expect(this.hardDrive.getLocalUser).toHaveBeenCalledWith(12);
+          expect(this.hardDrive.getLocalUser).toHaveBeenCalledWith(12, rawUserData);
           expect(this.adapter.getRemoteUser).not.toHaveBeenCalled();
           expect(result._data).toMatchSnapshot();
           expect(result.constructor.name).toMatchSnapshot();
