@@ -1,5 +1,6 @@
 const winston = require('winston');
 const { format } = require('logform');
+const EventEmitter = require('events');
 
 const alignedWithColorsAndTime = format.combine(
   format.colorize(),
@@ -7,11 +8,12 @@ const alignedWithColorsAndTime = format.combine(
   format.align(),
   format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
 );
-class Bot {
+class Bot extends EventEmitter {
   // An adapter is a specific interface to a chat source for robots.
   //
   // robot - A Robot instance.
   constructor ({hardDrive, brain}) {
+    super(...arguments);
     this.hardDrive = hardDrive;
     this.brain = brain;
     this.logger = winston.createLogger({
@@ -59,6 +61,9 @@ class Bot {
   // Returns nothing.
   close () {}
 
+  buildResponse(/*response, recievedMessage*/) {}
+
+  constructUserId() {}
 
   async findOrCreateContext(userId) {
     let context = await this.hardDrive.getContext(userId);
@@ -89,14 +94,18 @@ class Bot {
   //
   // Returns nothing.
   async receive (data) {
-    let userId = this.constructUserId(data);
-    let user = await this.findOrCreateUser(userId, data);
-    let context = await this.findOrCreateContext(userId);
-    let message = this.buildMessageObject(data);
-    message._raw = data;
-    let result = await this.brain.handleMessage(message, user, context);
-    let response = message.buildResponse(result);
-    return this.send(response);
+    try {
+      let userId = this.constructUserId(data);
+      let user = await this.findOrCreateUser(userId, data);
+      let context = await this.findOrCreateContext(userId);
+      let message = this.buildMessageObject(data);
+      message._raw = data;
+      let result = await this.brain.handleMessage(message, user, context);
+      let response = this.buildResponse(result, message);
+      await this.send(response);
+    } catch(e) {
+      this.emit('error', e);
+    }
   }
 }
 

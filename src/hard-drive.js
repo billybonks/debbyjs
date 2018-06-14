@@ -38,7 +38,7 @@ class HardDrive {
     this.cacheUser(userId, user);
   }
 
-  saveLocalUser(/*userId, _user*/){
+  async saveLocalUser(/*userId, _user*/){
     return null;
   }
 
