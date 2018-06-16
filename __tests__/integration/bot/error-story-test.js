@@ -47,7 +47,7 @@ describe('error story', () => {
         this.brain.handleMessage = jest.fn().mockReturnValue('asd');
       });
 
-      test.only('#buildResponse', async () => {
+      test('#buildResponse', async () => {
         let y = new Error('buildResponse');
         this.bot.buildResponse = jest.fn().mockImplementation(function() {
           throw y;
@@ -58,6 +58,9 @@ describe('error story', () => {
       });
 
       test('#send', async () => {
+        this.bot.buildMessageObject = jest.fn().mockReturnValue({});
+        this.bot.brain.handleMessage = jest.fn();
+        this.bot.buildResponse = jest.fn();
         let y = new Error('send');
         this.bot.send = jest.fn().mockRejectedValue(y);
         await this.bot.receive({});

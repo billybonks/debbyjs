@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Unit | HardDrive #getContext propergates to correct contextStore.fetch 1`] = `
+Array [
+  22,
+]
+`;
+
+exports[`Unit | HardDrive #getUser propergates to correct userStore.fetch 1`] = `
+Array [
+  12,
+]
+`;
+
 exports[`Unit | HardDrive #saveContext propergates to correct contextStore.save 1`] = `
 Array [
   18,
@@ -7,6 +19,16 @@ Array [
     "account": 99,
     "name": "cooldude",
     "word": true,
+  },
+]
+`;
+
+exports[`Unit | HardDrive #saveUser propergates to correct userStore.save 1`] = `
+Array [
+  18,
+  Object {
+    "account": 1,
+    "name": "seb",
   },
 ]
 `;

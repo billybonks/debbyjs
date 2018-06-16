@@ -6,14 +6,14 @@ class AssertedIntent {
 }
 
 describeClass( () => {
-  describe.only('#constructor', () => {
+  describe('#constructor', () => {
     test('sets targetObject', () => {
       let subject = new Subject(AssertedIntent);
       expect(subject.target).toEqual(AssertedIntent);
     });
   });
 
-  describe.only('#run', () => {
+  describe('#run', () => {
     test('returns expected hash', () => {
       const i18n = require('i18n');
       let orig = i18n.__;
