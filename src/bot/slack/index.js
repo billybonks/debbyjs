@@ -38,9 +38,10 @@ class SlackBot extends Bot {
       return;
     }
     else {
-      this.receive(message);
+      return this.receive(message);
     }
   }
+
   constructUserId(rawMessage){
     return `slack-${rawMessage.team}_${rawMessage.user}`;
   }
@@ -48,6 +49,14 @@ class SlackBot extends Bot {
   buildMessageObject(rawMessage){
     //text
     return new MessageText(rawMessage.user,  rawMessage.channel, rawMessage.text);
+  }
+
+  buildResponse(message, response){
+    return {
+      user: message.user,
+      room: message.room,
+      text: response.response,
+    };
   }
 }
 

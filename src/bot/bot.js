@@ -101,9 +101,11 @@ class Bot extends EventEmitter {
       let message = this.buildMessageObject(data);
       message._raw = data;
       let result = await this.brain.handleMessage(message, user, context);
-      let response = this.buildResponse(result, message);
+      let response = this.buildResponse(message, result);
       await this.send(response);
     } catch(e) {
+      // eslint-disable-next-line no-console
+      console.log(e.stack);
       this.emit('error', e);
     }
   }
