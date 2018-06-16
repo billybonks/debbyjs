@@ -6,13 +6,10 @@ Subject = require('../../src/brain');
 const i18n = require('i18n');
 let subject = null;
 
-describe('Unit | Bot', () => {
+describe('Unit | Brain', () => {
   describe('#constructor', () => {
     test('it works', () => {
-      let brain = {name: 'hello'};
-      subject = new Subject(brain);
-      expect(subject.name).toEqual('hello');
-      expect(subject.brain).toEqual(brain);
+      subject = new Subject();
       let engines = subject.engines.map( (engine) => { return engine.constructor; });
       expect(engines).toEqual([EngineAssertion, EngineRegex]);
     });
@@ -43,14 +40,19 @@ describe('Unit | Bot', () => {
 
     describe('#mount', () => {
       test('tries to mount on every engine', () => {
-        subject.mount(new IntentRegex());
-        subject.mount(new IntentAssertion({key:2}));
+        class testAssertionIntent extends IntentAssertion {
+          static get key(){
+            return 2;
+          }
+        }
+        subject.mount(IntentRegex);
+        subject.mount(testAssertionIntent);
         expect(Object.keys(subject.engines[0].intentKeys)).toEqual(['2']);
         expect(subject.engines[1].regexClasses.length).toEqual(1);
       });
     });
 
-    describe.only('#handleMessage', () => {
+    describe('#handleMessage', () => {
       let context, user, origTranslate;
       beforeEach(() => {
         context = {update:jest.fn()};

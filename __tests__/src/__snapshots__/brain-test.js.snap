@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit | Bot instance functions #handleMessage if finds string uses it 1`] = `
+exports[`Unit | Brain instance functions #handleMessage if finds string uses it 1`] = `
 Object {
   "context": Object {
     "lastMessage": null,
@@ -9,9 +9,9 @@ Object {
 }
 `;
 
-exports[`Unit | Bot instance functions #handleMessage if function executes it 1`] = `"thebest.message"`;
+exports[`Unit | Brain instance functions #handleMessage if function executes it 1`] = `"thebest.message"`;
 
-exports[`Unit | Bot instance functions #handleMessage if no message found uses fallback 1`] = `
+exports[`Unit | Brain instance functions #handleMessage if no message found uses fallback 1`] = `
 Object {
   "context": Object {
     "lastMessage": null,

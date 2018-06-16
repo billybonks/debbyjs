@@ -2,7 +2,7 @@ const i18n = require('i18n');
 const EngineAssertion = require('./engines/assertion');
 const EngineRegex = require('./engines/regex');
 
-class Bot {
+class Brain {
   constructor(){
     this.engines = [new EngineAssertion(), new EngineRegex()];
   }
@@ -55,4 +55,4 @@ class Bot {
   }
 }
 
-module.exports = Bot;
+module.exports = Brain;
