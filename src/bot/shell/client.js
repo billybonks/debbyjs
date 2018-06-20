@@ -1,5 +1,3 @@
-const Bot = require('./bot');
-
 const fs = require('fs');
 const readline = require('readline');
 const Stream = require('stream');
@@ -10,46 +8,35 @@ const historySize =  1024;
 
 const historyPath = '.bot_history';
 
-const { MessageText } = require('../messages');
 
-class ShellBot extends Bot {
-
-  send (messages) {
-    if (messages instanceof Array) {
-      // eslint-disable-line no-empty
-    } else {
-      console.log(chalk.bold(`${messages.text}`)); // eslint-disable-line no-console
-    }
+class ShellClient {
+  constructor(name, output){
+    this.name = name || 'defaultbot';
+    this.console = output;
   }
 
-  run () {
+  connect(){
     this.buildCli();
-
     loadHistory((error, history) => {
       if (error) {
-      //console.log(error.message)
+        this.console.log(error.message);
       }
 
       this.cli.history(history);
-      this.cli.interact(`${this.hardDrive.name}> `);
+      this.cli.interact(`${this.name}> `);
     });
+  }
+
+  send(message){
+    this.console.log(chalk.bold(`${message.text}`));
+  }
+
+  onMessage(callback) {
+    if (this.messageHandler !== callback) { return this.messageHandler = callback; }
   }
 
   shutdown () {
     return process.exit(0);
-  }
-
-  getRemoteUser() {
-    return this.user;
-  }
-
-  constructUserId(data){
-    return `shell-${data.sender}`;
-  }
-
-
-  buildMessageObject(data) {
-    return new MessageText(data.text);
   }
 
   buildCli () {
@@ -62,8 +49,8 @@ class ShellBot extends Bot {
       }
 
       const userName = process.env.SHELL_USER_NAME || 'Shell'; // eslint-disable-line no-unused-vars
-      this.receive({text: input, recipient:this.hardDrive.name, sender: userId}).catch( (error) => {
-        console.log(error);// eslint-disable-line no-console
+      this.messageHandler({text: input, recipient:this.name, sender: userId}).catch( (error) => {
+        this.console.log(error);
       });
     });
 
@@ -132,4 +119,4 @@ function loadHistory (callback) {
     .on('error', callback);
 }
 
-module.exports = ShellBot;
+module.exports = ShellClient;
