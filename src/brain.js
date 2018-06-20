@@ -22,6 +22,9 @@ class Brain {
     });
   }
 
+  get fallbackMessage(){
+    return  i18n.__('fallback', {sample:true}, {});
+  }
 
   async handleMessage(message, user, context){
     let matchedKlass;

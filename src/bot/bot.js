@@ -63,6 +63,10 @@ class Bot extends EventEmitter {
 
   buildResponse(/*response, recievedMessage*/) {}
 
+  buildMessageObject(data) {
+    return data;
+  }
+
   constructUserId() {}
 
   async findOrCreateContext(userId) {
@@ -90,24 +94,28 @@ class Bot extends EventEmitter {
     return user;
   }
 
+  sendResponse(message, result){
+    let response = this.buildResponse(message, result);
+    this.send(response);
+  }
   // Public: Dispatch a received message to the robot.
   //
   // Returns nothing.
   async receive (data) {
+    let result = null;
+    let message = this.buildMessageObject(data);
+    message._raw = data;
     try {
       let userId = this.constructUserId(data);
       let user = await this.findOrCreateUser(userId, data);
       let context = await this.findOrCreateContext(userId);
-      let message = this.buildMessageObject(data);
-      message._raw = data;
-      let result = await this.brain.handleMessage(message, user, context);
-      let response = this.buildResponse(message, result);
-      await this.send(response);
+      result = await this.brain.handleMessage(message, user, context);
     } catch(e) {
       // eslint-disable-next-line no-console
-      console.log(e.stack);
       this.emit('error', e);
+      result = {response:this.brain.fallbackMessage};
     }
+    await this.sendResponse(message, result);
   }
 }
 
