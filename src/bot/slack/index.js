@@ -10,17 +10,8 @@ class SlackBot extends Bot {
     }
   }
 
-  send (messages) {
-    const sent_messages = [];
-    if(!(messages instanceof Array)) {
-      messages = [messages];
-    }
-    for (let message of messages) {
-      if (message !== '') {
-        sent_messages.push(this.client.send(message));
-      }
-    }
-    return sent_messages;
+  send (message) {
+    this.client.send(message);
   }
 
   async getRemoteUser(userId){
