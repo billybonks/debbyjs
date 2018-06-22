@@ -23,13 +23,13 @@ describe('error story', () => {
         throw y;
       });
       await this.bot.receive({});
-      expect(this.errorSpy).toBeCalledWith(y);
+      expect(this.errorSpy.mock.calls[0]).toContain(y);
     });
     test('#findOrCreateUser', async () => {
       let y = new Error('findOrCreateUser');
       this.bot.findOrCreateUser  = jest.fn().mockRejectedValue(y);
       await this.bot.receive({});
-      expect(this.errorSpy).toBeCalledWith(y);
+      expect(this.errorSpy.mock.calls[0]).toContain(y);
     });
 
     test('#findOrCreateContext', async () => {
@@ -37,7 +37,7 @@ describe('error story', () => {
       this.bot.findOrCreateUser  = jest.fn();
       this.bot.findOrCreateContext  = jest.fn().mockRejectedValue(y);
       await this.bot.receive({});
-      expect(this.errorSpy).toBeCalledWith(y);
+      expect(this.errorSpy.mock.calls[0]).toContain(y);
     });
     //need to build a test to make sure fallback is called
     // these skipped tests noeed to go to an adatper test
@@ -59,7 +59,7 @@ describe('error story', () => {
         });
         this.bot.buildMessageObject = jest.fn().mockReturnValue({});
         await this.bot.receive({});
-        expect(this.errorSpy).toBeCalledWith(y);
+        expect(this.errorSpy.mock.calls[0]).toContain(y);
       });
 
       test('#send', async () => {
@@ -69,7 +69,7 @@ describe('error story', () => {
         let y = new Error('send');
         this.bot.send = jest.fn().mockRejectedValue(y);
         await this.bot.receive({});
-        expect(this.errorSpy).toBeCalledWith(y);
+        expect(this.errorSpy.mock.calls[0]).toContain(y);
       });
     });
 
@@ -86,7 +86,7 @@ describe('error story', () => {
       let y = new Error('handleMessage');
       this.brain.handleMessage = jest.fn().mockRejectedValue(y);
       await this.bot.receive({});
-      expect(this.errorSpy).toBeCalledWith(y);
+      expect(this.errorSpy.mock.calls[0]).toContain(y);
     });
 
     describe('when in engine', () => {
@@ -96,7 +96,7 @@ describe('error story', () => {
           throw y;
         });
         await this.bot.receive({});
-        expect(this.errorSpy).toBeCalledWith(y);
+        expect(this.errorSpy.mock.calls[0]).toContain(y);
       });
     });
 
@@ -111,7 +111,7 @@ describe('error story', () => {
           };
         };
         await this.bot.receive({});
-        expect(this.errorSpy).toBeCalledWith(y);
+        expect(this.errorSpy.mock.calls[0]).toContain(y);
       });
     });
 
@@ -127,7 +127,7 @@ describe('error story', () => {
           throw y;
         };
         await this.bot.receive({});
-        expect(this.errorSpy).toBeCalledWith(y);
+        expect(this.errorSpy.mock.calls[0]).toContain(y);
         i18n.__ = orig;
       });
     });
@@ -144,7 +144,7 @@ describe('error story', () => {
           return 'asd';
         };
         await this.bot.receive({});
-        expect(this.errorSpy).toBeCalledWith(y);
+        expect(this.errorSpy.mock.calls[0]).toContain(y);
       });
     });
   });

@@ -1,6 +1,7 @@
 const winston = require('winston');
 const { format } = require('logform');
 const EventEmitter = require('events');
+const uuidv4 = require('uuid/v4');
 
 const alignedWithColorsAndTime = format.combine(
   format.colorize(),
@@ -8,6 +9,7 @@ const alignedWithColorsAndTime = format.combine(
   format.align(),
   format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
 );
+
 class Bot extends EventEmitter {
   // An adapter is a specific interface to a chat source for robots.
   //
@@ -102,17 +104,21 @@ class Bot extends EventEmitter {
   //
   // Returns nothing.
   async receive (data) {
+    let idemptotencyToken = uuidv4();
     let result = null;
     let message = this.buildMessageObject(data);
     message._raw = data;
+    this.emit('message_recieved', idemptotencyToken, data);
     try {
       let userId = this.constructUserId(data);
       let user = await this.findOrCreateUser(userId, data);
       let context = await this.findOrCreateContext(userId);
+      this.emit('user_found', idemptotencyToken, user, context);
       result = await this.brain.handleMessage(message, user, context);
+      this.emit('message_processed', idemptotencyToken, result);
     } catch(e) {
       // eslint-disable-next-line no-console
-      this.emit('error', e);
+      this.emit('error', e, idemptotencyToken);
       result = {response:this.brain.fallbackMessage};
     }
     await this.sendResponse(message, result);
