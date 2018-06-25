@@ -1,3 +1,4 @@
 .bot_history
 node_modules
 .env
+coverage

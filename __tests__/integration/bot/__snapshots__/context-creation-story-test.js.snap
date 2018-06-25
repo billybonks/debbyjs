@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`context management story As a user that already has a conversation context fetches and returns context 1`] = `
+Object {
+  "lastMessage": "lifeIsGood",
+}
+`;
+
+exports[`context management story As a user that already has a conversation context fetches and returns context 2`] = `"Context"`;
+
+exports[`context management story As a user that doesn	 have a conversation context creates a default context 1`] = `Object {}`;
+
+exports[`context management story As a user that doesn	 have a conversation context creates a default context 2`] = `"Context"`;

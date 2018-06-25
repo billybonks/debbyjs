@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`receive message story When a message is recieved user and context, update with correct ids 1`] = `
+Array [
+  Array [
+    "mrBot-context-slack-billybonks_59",
+    "{\\"id\\":\\"extreme_mode\\",\\"prosperityMode\\":true}",
+    "EX",
+    600,
+  ],
+  Array [
+    "mrBot-context-slack-billybonks_59",
+    "{\\"id\\":\\"extreme_mode\\",\\"prosperityMode\\":true,\\"lastMessage\\":\\"banter.greet\\"}",
+    "EX",
+    600,
+  ],
+]
+`;
+
+exports[`receive message story When a message is recieved user and context, update with correct ids 2`] = `
+Array [
+  Array [
+    "mrBot-slack-billybonks_59",
+    "{\\"id\\":999,\\"github_user\\":\\"billybonks\\",\\"name\\":\\"sebastien\\",\\"number\\":888,\\"life\\":\\"is good\\"}",
+    "EX",
+    600,
+  ],
+]
+`;

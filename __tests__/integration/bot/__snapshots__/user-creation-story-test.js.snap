@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user management story As a user That exists in the cache it returns users 1`] = `
+Object {
+  "id": 12,
+  "name": "seb",
+}
+`;
+
+exports[`user management story As a user That exists in the cache it returns users 2`] = `"User"`;
+
+exports[`user management story As a user That exists on the main database it checks the database 1`] = `
+Object {
+  "id": 12,
+  "name": "seb",
+}
+`;
+
+exports[`user management story As a user That exists on the main database it checks the database 2`] = `"User"`;

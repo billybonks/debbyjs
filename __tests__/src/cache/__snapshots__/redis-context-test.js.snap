@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit | RedisContext #fetch it calls redis.get 1`] = `
+Array [
+  "billybonks-context-15",
+]
+`;
+
+exports[`Unit | RedisContext #generateRedisKey returns expected value 1`] = `"billybonks-context-22"`;
+
+exports[`Unit | RedisContext #save it calls redis.set 1`] = `
+Array [
+  "billybonks-context-12",
+  "{\\"name\\":\\"bob\\",\\"something\\":\\"awesome\\"}",
+  "EX",
+  600,
+]
+`;
