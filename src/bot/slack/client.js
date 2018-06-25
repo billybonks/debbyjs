@@ -11,7 +11,6 @@ class SlackClient {
 
     this.rtm = new RtmClient(options.token, options.rtm);
     this.rtmStartOpts = options.rtmStart || {};
-
     // Web is the fallback for complex messages
     this.web = new WebClient(options.token);
 
@@ -35,6 +34,9 @@ class SlackClient {
   Slack RTM message events wrapper
   */
   messageWrapper(message) {
+    if(message.channel[0] ==='C'){
+      return;
+    }
     if (this.messageHandler) {
       const {user, channel, bot_id} = message;
       message.user = user ? user : bot_id;
