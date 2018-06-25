@@ -43,10 +43,12 @@ class Brain {
     if(typeof matchedKlass == 'function'){
       let instance = new matchedKlass();
       result = await instance.run(message, user, context);
+      result.matchedHandler = matchedKlass.key;
     } else {
       result = {
+        matchedHandler: matchedKlass,
         response: i18n.__(matchedKlass, {sample:true}, {}),
-        context: {lastMessage: null}
+        context: {lastMessage: matchedKlass}
       };
     }
     if(result){

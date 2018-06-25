@@ -3,19 +3,26 @@
 exports[`Unit | Brain instance functions #handleMessage if finds string uses it 1`] = `
 Object {
   "context": Object {
-    "lastMessage": null,
+    "lastMessage": "fallback.assertion",
   },
+  "matchedHandler": "fallback.assertion",
   "response": "fallback.assertion",
 }
 `;
 
-exports[`Unit | Brain instance functions #handleMessage if function executes it 1`] = `"thebest.message"`;
+exports[`Unit | Brain instance functions #handleMessage if function executes it 1`] = `
+Object {
+  "matchedHandler": "greeter",
+  "result": "thebest.message",
+}
+`;
 
 exports[`Unit | Brain instance functions #handleMessage if no message found uses fallback 1`] = `
 Object {
   "context": Object {
-    "lastMessage": null,
+    "lastMessage": "fallback",
   },
+  "matchedHandler": "fallback",
   "response": "fallback",
 }
 `;

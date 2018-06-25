@@ -56,7 +56,7 @@ describe('Stat emitting story', () => {
     await this.bot.receive(message);
     toBeCalledWithIdempotencyToken(this.messageRecieved, message);
     toBeCalledWithIdempotencyToken(this.userFound, user, context);
-    let expectedresult = {'context': {'lastMessage': 'banter.greet'}, 'quickReplies': 'banter.greet', 'response': 'banter.greet'};
+    let expectedresult = {'context': {'lastMessage': 'banter.greet'}, 'quickReplies': 'banter.greet', 'response': 'banter.greet', 'matchedHandler': 'banter.greet'};
     resultToEqual(this.messageProcessed, expectedresult);
   });
 });

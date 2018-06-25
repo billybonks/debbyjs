@@ -80,8 +80,11 @@ describe('Unit | Brain', () => {
           static get regex(){
             return /\bhi\b|\bhello\b/i;
           }
+          static get key(){
+            return 'greeter';
+          }
           run(){
-            return 'thebest.message';
+            return {result: 'thebest.message'};
           }
         }
         subject.mount(Greeter);
