@@ -37,6 +37,9 @@ class SlackClient {
     if(message.channel[0] ==='C'){
       return;
     }
+    if(message.user ==='USLACKBOT'){
+      return;
+    }
     if (this.messageHandler) {
       const {user, channel, bot_id} = message;
       message.user = user ? user : bot_id;
